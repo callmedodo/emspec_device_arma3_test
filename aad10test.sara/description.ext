@@ -1,0 +1,60 @@
+#include "defines.hpp"
+#include "button.hpp"
+onLoadIntro = "testMissionForUseOfSpectrumDevice";
+author			= "CALLMEDODO[TTT]";
+OnLoadName		= "TTT";
+onLoadMission = "aad10test";
+
+class MyHelloWorldDialog2 {
+	idd = -1;
+	movingEnable = 0;
+	class ControlsBackground {
+		// define controls here
+	};
+	class Objects {
+		// define controls here
+	};
+	class Controls {
+		// define controls here
+class CloseButton : RscButton {
+	/* … */
+	type = CT_BUTTON;
+	idc = -1;
+	text = "Close";
+	action = "closeDialog 0";
+	x = 0.80;
+    			y = 0.10;
+    			w = 0.20;
+    			h = 0.05;
+};
+};
+};
+
+class RscTitles
+{
+	class ExampleTitle
+	{
+		idd = -1;
+		duration = 6;
+		class controls
+		{
+			class ExampleControl
+			{
+				idc = -1;
+				type = 0;
+				style = 0;
+				x = 0;
+				y = 0;
+				w = 1;
+				h = 1;
+				font = "EtelkaNarrowMediumPro";
+				sizeEx = 0.1;
+				colorBackground[] = {0,0,0,1};
+				colorText[] = {1,1,1,1};
+				text = "Example Text";
+			};
+		};
+	};
+};
+
+
