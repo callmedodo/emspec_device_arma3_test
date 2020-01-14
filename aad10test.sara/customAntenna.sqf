@@ -54,36 +54,37 @@ while{_runcondition and  alive _caller} do {
 
     if(_difcheck || _distPlaAnt1 <= _outterRing) then {
         if(_difcheck && _distPlaAnt1 >= _outerRing2) then {
-            _updateValueEM = [_freq,-100];
+            [_freq,-100] execVM "updateValue.sqf";
             //missionNamespace setVariable ["#EM_Values", [141.8,-100]];
         } else {
             if(_difcheck && _distPlaAnt1 >= _middleRing) then {
-                _updateValueEM = [_freq,-75];
+               [_freq,-75] execVM "updateValue.sqf";
                 //missionNamespace setVariable ["#EM_Values", [141.8,-75]];
             } else {
                 if(_difcheck && _distPlaAnt1 >= _innerRing) then {
-                    _updateValueEM = [_freq,-50];
+                    [_freq,-50] execVM "updateValue.sqf";
                    //missionNamespace setVariable ["#EM_Values", [141.8,-50]];
                 } else {
                     if(_difcheck && _distPlaAnt1 >= _detectionRadius) then {
-                        _updateValueEM = [_freq,-25];
+                        [_freq,-25] execVM "updateValue.sqf";
                         //missionNamespace setVariable ["#EM_Values", [141.8,-25]];
                     } else {
                         if(_difcheck) then {
-                            _updateValueEM = [_freq,0];
+                            [_freq,0] execVM "updateValue.sqf";
                             //missionNamespace setVariable ["#EM_Values", [141.8,0]];
                             if(_freq >= _selmin && _freq <= _selmax) then {
                                 _newProg = _progress + 0.1;
                                 missionNamespace setVariable ["#EM_Progress",_newProg];
                                 if(_newProg >= 1) then {
-                                    _updateValueEM = [_freq,-110];
+                                    [_freq,-110] execVM "updateValue.sqf";
                                     //missionNamespace setVariable ["#EM_Values", [141.8,-110]];//disable Signal
                                     _runcondition = false;//exiting loop
+                                    missionNamespace setVariable ["#EM_Progress",0];
                                     [_caller,_antenna] execVM "hacked.sqf";//call GUI for Hacking
                                 };
                             };
                         } else {
-                            _updateValueEM = [_freq,-100];
+                            [_freq,-100] execVM "updateValue.sqf";
                             //missionNamespace setVariable ["#EM_Values", [141.8,-100]];
                         };
                     };
@@ -91,16 +92,10 @@ while{_runcondition and  alive _caller} do {
             };
         };
     } else {
-        _updateValueEM = [_freq,-110];
+        [_freq,-110] execVM "updateValue.sqf";
         //missionNamespace setVariable ["#EM_Values", [141.8,-110]];
     };
-    _elNum = {_x select 0 == _updateValueEM select 0} count _emValues;
-    if(_elNum > -1) then{
-        _emValues set [_elNum,_updateValueEM select 1];
-    } else {
-        _emValues pushBack _updateValueEM;
-    };
-    missionNameSpace setVariable ["#EM_Values",_emValues];
+
     sleep(0.5);
 };
 /*
