@@ -11,6 +11,7 @@ _antenna = _this select 1;
 
 _ok = createDialog "MyHelloWorldDialog";
 
+if(unitIsUAV _antenna) then {
 //Let them burn
 buttonSetAction[100,_antenna + "setDamage 1"];
 
@@ -23,10 +24,10 @@ buttonSetAction[102,_caller + " connectTerimnalToUAV " + _antenna];
 //                                gunner "+_antenna+" switchCamera 'Internal';
  //                               sleep(30);
   //                              objNull remoteControl gunner +"_antenna+";"];
-buttonSetAction[104,_antenna +" fireAtTarget ["+_antenna+" nearEntities [['Car', 'Motorcycle', 'UAV'], 200]];"];
+buttonSetAction[103,_antenna +" fireAtTarget ["+_antenna+" nearEntities [['Car', 'Motorcycle', 'UAV'], 200]];"];
 
-buttonSetAction[105,_antenna +" setCaptive true"];
+buttonSetAction[104,_antenna +" setCaptive true"];
 
 waitUntil { !dialog }; // hit ESC to close it
 
-//"+_antenna+" nearEntities [["Car", "Motorcycle", "UAV"], 300];
+};

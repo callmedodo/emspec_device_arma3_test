@@ -79,7 +79,7 @@ while{_runcondition and  alive _caller} do {
                                     _updateValueEM = [_freq,-110];
                                     //missionNamespace setVariable ["#EM_Values", [141.8,-110]];//disable Signal
                                     _runcondition = false;//exiting loop
-                                    execVM "hacked.sqf";//call GUI for Hacking
+                                    [_caller,_antenna] execVM "hacked.sqf";//call GUI for Hacking
                                 };
                             };
                         } else {
