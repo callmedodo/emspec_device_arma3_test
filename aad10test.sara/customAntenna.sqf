@@ -74,9 +74,11 @@ while{_runcondition and  alive _caller} do {
                             //missionNamespace setVariable ["#EM_Values", [141.8,0]];
                             if(_freq >= _selmin && _freq <= _selmax) then {
                                 _newProg = _progress + 0.1;
+                                missionNamespace setVariable ["#EM_Transmit", true];
                                 missionNamespace setVariable ["#EM_Progress",_newProg];
                                 if(_newProg >= 1) then {
                                     _updateValueEM = [_freq,-110];
+                                    missionNamespace setVariable ["#EM_Transmit", false];
                                     //missionNamespace setVariable ["#EM_Values", [141.8,-110]];//disable Signal
                                     _runcondition = false;//exiting loop
                                     [_caller,_antenna] execVM "hacked.sqf";//call GUI for Hacking
