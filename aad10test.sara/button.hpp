@@ -40,7 +40,6 @@ class MyHelloWorldDialog {
             y = 0.30;
             w = 0.20;
             h = 0.05;
-    	    action = "hint '3';";
         };
         class bottomButton: RscButton {
 	        type = CT_BUTTON;
@@ -50,8 +49,15 @@ class MyHelloWorldDialog {
             y = 0.40;
             w = 0.20;
             h = 0.05;
-     	    action = "hint '4';";
 	    };
+	     class bottomButtondown: RscButton {
+            type = CT_BUTTON;
+            idc = 104;
+            text = "SetCaptive";
+            x = 0.80;
+            y = 0.40;
+            h = 0.05;
+        	};
     };
 };
 
