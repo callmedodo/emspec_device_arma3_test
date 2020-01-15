@@ -5,28 +5,27 @@
 */
 
 //_ok = cutRsc["RscTitles","Plain"];
-_caller = _this select 0;
+private _caller = _this select 0;
 
-_antenna = _this select 1;
-
-_ok = createDialog "MyHelloWorldDialog";
+private _antenna = _this select 1;
+hint str _antenna;
+private _ok = createDialog "MyHelloWorldDialog";
 
 if(unitIsUAV _antenna) then {
 //Let them burn
-buttonSetAction[100,_antenna + "setDamage 1"];
+buttonSetAction[100,str _antenna + " setDamage 1"];
 
 //buttonSetAction[101,_antenna+" deleteVehicleCrew _x } forEach crew "+_antenna];
-buttonSetAction[101, _antenna +"  setAutonomous false "];
+buttonSetAction[101, str _antenna +"  setAutonomous false "];
 
-buttonSetAction[102,_caller + " connectTerimnalToUAV " + _antenna];
+//buttonSetAction[102,str _caller + " connectTerimnalToUAV " +str _antenna + ";"];
 
-//buttonSetAction[103,_caller + " remoteControl driver "+_antenna+";
-//                                gunner "+_antenna+" switchCamera 'Internal';
- //                               sleep(30);
-  //                              objNull remoteControl gunner +"_antenna+";"];
-buttonSetAction[103,_antenna +" fireAtTarget ["+_antenna+" nearEntities [['Car', 'Motorcycle', 'UAV'], 200]];"];
+buttonSetAction[102, "[" +str _caller+","+ str  _antenna+"] execVM 'takeRemoteControl.sqf'"];
 
-buttonSetAction[104,_antenna +" setCaptive true"];
+buttonSetAction[103,str _antenna +" fireAtTarget ["+str _antenna+" nearEntities [['Car', 'Motorcycle', 'UAV'], 200]];"];
+hint str buttonAction 102;
+
+buttonSetAction[104,str _antenna +" setCaptive true;"];
 
 waitUntil { !dialog }; // hit ESC to close it
 

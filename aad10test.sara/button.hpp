@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////
 class MyHelloWorldDialog {
 	idd = 12;
-	movingEnable = 0;
+	movingEnable = 1;
 	class ControlsBackground {
 		// define controls here
 	};
@@ -55,7 +55,7 @@ class MyHelloWorldDialog {
             idc = 104;
             text = "SetCaptive";
             x = 0.80;
-            y = 0.40;
+            y = 0.50;
             h = 0.05;
         	};
     };
