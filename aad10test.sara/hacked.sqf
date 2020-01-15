@@ -5,11 +5,11 @@
 */
 
 //_ok = cutRsc["RscTitles","Plain"];
-_caller = _this select 0;
+private _caller = _this select 0;
 
-_antenna = _this select 1;
+private _antenna = _this select 1;
 hint str _antenna;
-_ok = createDialog "MyHelloWorldDialog";
+private _ok = createDialog "MyHelloWorldDialog";
 
 if(unitIsUAV _antenna) then {
 //Let them burn

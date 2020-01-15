@@ -8,24 +8,24 @@
     PARAMS
 */
 //get the caller of the function
-_caller = _this select 0;
+private _caller = _this select 0;
 //get the specific antenna
-_antenna = _this select 1;
+private _antenna = _this select 1;
 //Range in which Device is Detecting
-_outerRing2 =  _this select 2;      //100% ->range in which signal is always detectable -> 100
+private _outerRing2 =  _this select 2;      //100% ->range in which signal is always detectable -> 100
 //in which degree will it detect source
-_detecDegree = _this select 3; // 20
+private _detecDegree = _this select 3; // 20
 //Freq on which signal is broadcasted
-_freq = _this select 4;
+private _freq = _this select 4;
 
 /*
     VARS
 */
-_outterRing = _outerRing2 * 2;      //200% ->200
-_middleRing = _outerRing2 * 0.75;       //75% -> 75
-_innerRing = _outerRing2 * 0.5;        //50% -> 50
-_detectionRadius = _outerRing2 * 0.25;  //25% -> range to "hack" target -> 25
-_runcondition = true;
+private _outterRing = _outerRing2 * 2;      //200% ->200
+private _middleRing = _outerRing2 * 0.75;       //75% -> 75
+private _innerRing = _outerRing2 * 0.5;        //50% -> 50
+private _detectionRadius = _outerRing2 * 0.25;  //25% -> range to "hack" target -> 25
+private _runcondition = true;
 
 /*
     CODE
@@ -34,23 +34,23 @@ _runcondition = true;
 while{_runcondition and  alive _caller} do {
 
     //distance between player(caller) and source
-    _distPlaAnt1 = _caller distance _antenna;
+    private _distPlaAnt1 = _caller distance _antenna;
 
     //in which direction from the caller is the source
-    _azimuth = player getDir _antenna;
+    private _azimuth = player getDir _antenna;
     //in which direction is the player facing
-    _dir = direction player;
+    private _dir = direction player;
 
     //calculates difference between azimuth and dir, which is used to find out if player is pointed within specific values at source
-    _dif1 = _azimuth - _dir;
+    private _dif1 = _azimuth - _dir;
     _difcheck =(_dif1 <= _detecDegree and _dif1 >= -_detecDegree) or (_dif1 <= 360 + _detecDegree and _dif1 >= 360 - _detecDegree) or (_dif1 >= -360 - _detecDegree and _dif1 <= -360 + _detecDegree);
 
     //is needed for hacking progress
-    _progress = missionNameSpace getVariable "#EM_Progress";
-    _selmax = missionNameSpace getVariable "#EM_SelMax";
-    _selmin = missionNameSpace getVariable "#EM_SelMin";
-    _emValues = missionNameSpace getVariable "#EM_Values";
-    _updateValueEM = [_freq,0];
+    private _progress = missionNameSpace getVariable "#EM_Progress";
+    private _selmax = missionNameSpace getVariable "#EM_SelMax";
+    private _selmin = missionNameSpace getVariable "#EM_SelMin";
+    private _emValues = missionNameSpace getVariable "#EM_Values";
+    private _updateValueEM = [_freq,0];
 
     if(_difcheck || _distPlaAnt1 <= _outterRing) then {
         if(_difcheck && _distPlaAnt1 >= _outerRing2) then {
@@ -73,10 +73,12 @@ while{_runcondition and  alive _caller} do {
                             [_freq,0] execVM "updateValue.sqf";
                             //missionNamespace setVariable ["#EM_Values", [141.8,0]];
                             if(_freq >= _selmin && _freq <= _selmax) then {
-                                _newProg = _progress + 0.1;
+                                private _newProg = _progress + 0.1;
+                                missionNamespace setVariable ["#EM_Transmit", true];
                                 missionNamespace setVariable ["#EM_Progress",_newProg];
                                 if(_newProg >= 1) then {
                                     [_freq,-110] execVM "updateValue.sqf";
+                                    missionNamespace setVariable ["#EM_Transmit", false];
                                     //missionNamespace setVariable ["#EM_Values", [141.8,-110]];//disable Signal
                                     _runcondition = false;//exiting loop
                                     missionNamespace setVariable ["#EM_Progress",0];
