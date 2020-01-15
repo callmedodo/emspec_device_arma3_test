@@ -54,11 +54,11 @@ while{_runcondition and  alive _caller} do {
     private _dirEmspecDevice = _weaponVectorDir select 2 atan2 _weaponVectorDir select 0;
     private _difcheckVertical = _dirTang >= _dirEmspecDevice + _detecDegree and _dirTang <= _dirEmspecDevice -_detecDegree;
 
-    //is needed for hacking progress
-    private _progress = missionNameSpace getVariable "#EM_Progress";
-    private _selmax = missionNameSpace getVariable "#EM_SelMax";
-    private _selmin = missionNameSpace getVariable "#EM_SelMin";
-    private _emValues = missionNameSpace getVariable "#EM_Values";
+    //is needed for hacking progresss
+    private _progress = missionNamespace getVariable "#EM_Progress";
+    private _selmax = missionNamespace getVariable "#EM_SelMax";
+    private _selmin = missionNamespace getVariable "#EM_SelMin";
+    private _emValues = missionNamespace getVariable "#EM_Values";
     private _updateValueEM = [_freq,0];
 
     if(_difcheck || _distPlaAnt1 <= _outterRing) then {
