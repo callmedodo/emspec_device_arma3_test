@@ -43,7 +43,16 @@ while{_runcondition and  alive _caller} do {
 
     //calculates difference between azimuth and dir, which is used to find out if player is pointed within specific values at source
     private _dif1 = _azimuth - _dir;
-    _difcheck =(_dif1 <= _detecDegree and _dif1 >= -_detecDegree) or (_dif1 <= 360 + _detecDegree and _dif1 >= 360 - _detecDegree) or (_dif1 >= -360 - _detecDegree and _dif1 <= -360 + _detecDegree);
+    private _difcheck =(_dif1 <= _detecDegree and _dif1 >= -_detecDegree) or (_dif1 <= 360 + _detecDegree and _dif1 >= 360 - _detecDegree) or (_dif1 >= -360 - _detecDegree and _dif1 <= -360 + _detecDegree);
+
+    //used for 3d calculation of wathcing pos
+    private _anKathete = _caller distance2D _antenna;
+    private _gegenKathete = sqrt((_distPlaAnt1 ^ 2) -(_anKathete ^ 2));
+    private _dirTang = _gegenKathete atan2 _anKathete;
+
+    private _weaponVectorDir = _caller weaponDirection currentWeapon _caller;
+    private _dirEmspecDevice = _weaponVectorDir select 2 atan2 _weaponVectorDir select 0;
+    private _difcheckVertical = _dirTang >= _dirEmspecDevice + _detecDegree and _dirTang <= _dirEmspecDevice -_detecDegree;
 
     //is needed for hacking progress
     private _progress = missionNameSpace getVariable "#EM_Progress";
